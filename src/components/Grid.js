@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import { GridCell } from "./GridCell";
 import axios from "axios";
 const PORT = 3005;
-// let src = null;
-// let des = null;
 
 export const Grid = ({ row, col }) => {
-  const [algo, setAlgo] = useState("bfs");
+  const [algo, setAlgo] = useState("shortest_path");
   const [visited, setVisited] = useState([]);
   const [src, setSrc] = useState(null);
   const [des, setDes] = useState(null);
@@ -103,6 +101,7 @@ export const Grid = ({ row, col }) => {
       <select onChange={handleChange} defaultValue={algo}>
         <option value="bfs">BFS</option>
         <option value="dfs">DFS</option>
+        <option value="shortest_path">Shortest Path</option>
       </select>
     </div>
   );

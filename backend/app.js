@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const { type } = require("@testing-library/user-event/dist/type");
 const PORT = 3005;
 
 app.use(cors());
@@ -17,6 +16,12 @@ app.post("/dfs", (req, res) => {
   const { tempCells, src, des } = req.body;
   console.log(src, des);
   res.send(dfs(tempCells, src, des));
+});
+
+app.post("/shortest_path", (req, res) => {
+  const { tempCells, src, des } = req.body;
+  console.log(src, des);
+  res.send(shortest_path(tempCells, src, des));
 });
 
 app.post("/build-graph", (req, res) => {
@@ -43,6 +48,18 @@ app.post("/build-graph", (req, res) => {
       if (j + 1 < col) {
         tempCells[`${i}${j}`]["neighbors"].push(`${i}${j + 1}`);
       }
+      if (i - 1 >= 0 && j - 1 >= 0) {
+        tempCells[`${i}${j}`]["neighbors"].push(`${i - 1}${j - 1}`);
+      }
+      if (i - 1 >= 0 && j + 1 < col) {
+        tempCells[`${i}${j}`]["neighbors"].push(`${i - 1}${j + 1}`);
+      }
+      if (i + 1 < row && j - 1 >= 0) {
+        tempCells[`${i}${j}`]["neighbors"].push(`${i + 1}${j - 1}`);
+      }
+      if (i + 1 < row && j + 1 < col) {
+        tempCells[`${i}${j}`]["neighbors"].push(`${i + 1}${j + 1}`);
+      }
     }
   }
   res.send(tempCells);
@@ -59,7 +76,6 @@ function bfs(graph, src, destination) {
         return visited;
       }
       visited.push(poppedEl);
-      console.log(poppedEl, graph[poppedEl]["neighbors"]);
       queue.push(...graph[poppedEl]["neighbors"]);
     }
   }
@@ -78,6 +94,42 @@ function dfs(graph, src, des, visited = []) {
   for (let neighbor of graph[src]["neighbors"]) {
     if (dfs(graph, neighbor, des, visited).length > 0) {
       return visited;
+    }
+  }
+  return [];
+}
+
+function shortest_path(graph, src, destination) {
+  if (src === destination) {
+    return [src];
+  }
+  let N = parseInt(Math.pow(Object.keys(graph).length, 2));
+  let pred = {};
+  let dist = {};
+  let queue = [src];
+  let visited = [src];
+  dist[src] = 0;
+  while (queue) {
+    let poppedEl = queue.shift();
+    for (let neighbor of graph[poppedEl]["neighbors"]) {
+      if (!visited.includes(neighbor)) {
+        visited.push(neighbor);
+        dist[neighbor] = dist[poppedEl] + 1;
+        pred[neighbor] = poppedEl;
+        queue.push(neighbor);
+        if (neighbor === destination) {
+          let path = [];
+          crawl = destination;
+          path.push(crawl);
+
+          while (pred[crawl] != src) {
+            path.push(pred[crawl]);
+            crawl = pred[crawl];
+          }
+          path.push(src);
+          return path;
+        }
+      }
     }
   }
   return [];
