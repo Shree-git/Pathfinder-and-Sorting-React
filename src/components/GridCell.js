@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export const GridCell = ({ row, col, visited, resetVisited, onClick }) => {
+export const GridCell = ({ row, col, visited, onClick }) => {
   const [className, setClassName] = useState("gridCell");
   const [isClicked, setIsClicked] = useState(false);
 

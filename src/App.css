@@ -27,7 +27,32 @@
 
 .visitedCell{
   background-color: red !important;
-  transition: background-color 0.5s;
+  transition: background-color 0.2s;
 }
 
+
+.calc{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+}
+
+.bars{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 20px;
+}
+
+.bar{
+  width: 10px;
+  background-color: black;
+  margin-right: 5px;
+  cursor: pointer;
+  padding: 10px 0;
+}
+
+.bar:hover{
+  background-color: gray;
+}
 

@@ -60,11 +60,14 @@ export const Grid = ({ row, col }) => {
         src,
         des,
       })
-      .then((res) => {
+      .then(async (res) => {
         let path = res.data;
         path.push(des);
         console.log("path found");
-        setVisited(path);
+        for (let p of path) {
+          setVisited((prev) => [...prev, p]);
+          await delay(50);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -75,6 +78,14 @@ export const Grid = ({ row, col }) => {
     setVisited([]);
   };
 
+  function delay(delayInms) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(2);
+      }, delayInms);
+    });
+  }
+
   const displayCells = gridCells.map((row, rowIndex) => {
     return gridCells[rowIndex].map((col, colIndex) => {
       return (
@@ -83,7 +94,6 @@ export const Grid = ({ row, col }) => {
           row={rowIndex}
           col={colIndex}
           visited={visited}
-          resetVisited={resetVisited}
           onClick={onCellClicked}
         ></GridCell>
       );
