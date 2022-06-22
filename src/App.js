@@ -6,9 +6,9 @@ import { Sort } from "./components/sorting/Sort";
 function App() {
   return (
     <div className="App">
+      <Board></Board>
       <Sort></Sort>
       <Calc></Calc>
-      <Board></Board>
     </div>
   );
 }

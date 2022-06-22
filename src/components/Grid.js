@@ -107,12 +107,16 @@ export const Grid = ({ row, col }) => {
 
   return (
     <div>
-      <div className="mainGrid">{displayCells}</div>
-      <select onChange={handleChange} defaultValue={algo}>
+      <select
+        onChange={handleChange}
+        defaultValue={algo}
+        className="pathSelectTool"
+      >
         <option value="bfs">BFS</option>
         <option value="dfs">DFS</option>
         <option value="shortest_path">Shortest Path</option>
       </select>
+      <div className="mainGrid">{displayCells}</div>
     </div>
   );
 };

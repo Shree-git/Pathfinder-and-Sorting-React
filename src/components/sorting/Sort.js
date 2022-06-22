@@ -3,7 +3,7 @@ import { Bars } from "./Bars";
 
 export const Sort = () => {
   return (
-    <div>
+    <div className="sort">
       <Bars count={30}></Bars>
     </div>
   );

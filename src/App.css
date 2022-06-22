@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+.mainBoard{
+  background-color: blanchedalmond;
+  margin: 10px;
+}
+
 .mainGrid{
   display: grid;
   grid-template-columns: repeat(10,1fr);
@@ -30,10 +35,40 @@
   transition: background-color 0.2s;
 }
 
+.pathSelectTool{
+  padding: 5px;
+  border-radius: 10px;
+  font-weight: bold;
+}
 
-.calc{
+.calculator{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin:20px;
+  background-color: cornflowerblue;
+}
+
+.calcBoard{
+  width: 50%;
   display: grid;
   grid-template-columns: repeat(3,1fr);
+}
+
+.display{
+  width: 47%;
+  height: 20px;
+  padding: 20px 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgb(255, 247, 237);
+  margin-bottom: 5px;
+}
+
+.sort{
+ background-color: ivory;
+ margin: 10px;
 }
 
 .bars{
@@ -55,4 +90,5 @@
 .bar:hover{
   background-color: gray;
 }
+
 
