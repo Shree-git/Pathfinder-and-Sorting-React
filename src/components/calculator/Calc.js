@@ -6,7 +6,7 @@ export const Calc = () => {
       <div
         key={(index + 1) % 10}
         className="gridCell"
-        onClick={() => captureNumber(index)}
+        onClick={() => captureNumber((index + 1) % 10)}
       >
         {(index + 1) % 10}
       </div>
