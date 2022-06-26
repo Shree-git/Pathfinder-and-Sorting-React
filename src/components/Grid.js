@@ -15,10 +15,13 @@ export const Grid = ({ row, col }) => {
     setGridCells(Array.from(Array(row), () => new Array(col).fill(0)));
 
     axios
-      .post(`http://localhost:${PORT}/build-graph`, {
-        row,
-        col,
-      })
+      .post(
+        `https://git.heroku.com/pathfinder-and-sorting-react.git/build-graph`,
+        {
+          row,
+          col,
+        }
+      )
       .then((res) => {
         setTempCells(res.data);
       })
@@ -55,7 +58,7 @@ export const Grid = ({ row, col }) => {
   const pathfind = () => {
     console.log("finding path...");
     return axios
-      .post(`http://localhost:${PORT}/${algo}`, {
+      .post(`https://git.heroku.com/pathfinder-and-sorting-react.git/${algo}`, {
         tempCells,
         src,
         des,
