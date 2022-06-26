@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { GridCell } from "./GridCell";
 import axios from "axios";
-const PORT = 3005;
+const PORT = 5000;
+const website =
+  "https://pathfinder-and-sorting-react.herokuapp.com" ||
+  "http://localhost:3000";
 
 export const Grid = ({ row, col }) => {
   const [algo, setAlgo] = useState("shortest_path");
@@ -15,13 +18,10 @@ export const Grid = ({ row, col }) => {
     setGridCells(Array.from(Array(row), () => new Array(col).fill(0)));
 
     axios
-      .post(
-        `https://git.heroku.com/pathfinder-and-sorting-react.git/build-graph`,
-        {
-          row,
-          col,
-        }
-      )
+      .post(`${website}/build-graph`, {
+        row,
+        col,
+      })
       .then((res) => {
         setTempCells(res.data);
       })
@@ -58,7 +58,7 @@ export const Grid = ({ row, col }) => {
   const pathfind = () => {
     console.log("finding path...");
     return axios
-      .post(`https://git.heroku.com/pathfinder-and-sorting-react.git/${algo}`, {
+      .post(`${website}/${algo}`, {
         tempCells,
         src,
         des,

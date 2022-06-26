@@ -1,14 +1,27 @@
 const express = require("express");
 const app = express();
-const cors = require("cors");
+// const cors = require("cors");
 const corsOptions = {
   origin: "http://localhost:3000",
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
-const PORT = process.env.PORT || 3005;
 
-app.use(cors(corsOptions));
+const PORT = process.env.PORT || 3005;
+app.use(function (req, res, next) {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://pathfinder-and-sorting-react.herokuapp.com"
+  ); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
+// app.use(cors(corsOptions));
 app.use(express.json());
 
 app.post("/bfs", (req, res) => {
