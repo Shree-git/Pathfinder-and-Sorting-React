@@ -4,7 +4,7 @@ import axios from "axios";
 const PORT = 5000;
 const website =
   "https://pathfinder-and-sorting-react.herokuapp.com" ||
-  "http://localhost:3000";
+  `http://localhost:${PORT}`;
 
 export const Grid = ({ row, col }) => {
   const [algo, setAlgo] = useState("shortest_path");
