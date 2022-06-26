@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3005;
 app.use(function (req, res, next) {
   res.header(
     "Access-Control-Allow-Origin",
-    "https://pathfinder-and-sorting-react.herokuapp.com"
+    "https://pathfinder-and-sorting-react.netlify.app"
   ); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   res.header(
