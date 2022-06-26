@@ -3,8 +3,9 @@ import { GridCell } from "./GridCell";
 import axios from "axios";
 const PORT = 5000;
 const website =
-  "https://pathfinder-and-sorting-react.herokuapp.com" ||
-  `http://localhost:${PORT}`;
+  process.env.NODE_ENV === "production"
+    ? "https://pathfinder-and-sorting-react.herokuapp.com"
+    : `http://localhost:${PORT}`;
 
 export const Grid = ({ row, col }) => {
   const [algo, setAlgo] = useState("shortest_path");
